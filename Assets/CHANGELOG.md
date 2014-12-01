@@ -1,6 +1,13 @@
 EPPZEasing
 ----------
 
+* 0.0.2
+
+	+ `EPPZEasing_Ease_In_Out()`
+	+ `EPPZEasing_Ease_In_Out_2()`
+	+ `EPPZEasing_Ease_In_Out_3()`
+	+ UI adjustments
+
 * 0.0.1
 
 	+ Basic class hieararchy up
