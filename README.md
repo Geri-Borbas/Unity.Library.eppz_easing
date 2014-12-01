@@ -37,28 +37,87 @@ So once you have a linear completion (or any kind of) percentage somewhere in yo
 #### Usage
 
 Can be applied to any `float` using extension methods.
+```C#
+float easedCompletion = completion.ValueWithEasingType(EasingType.Ease_In_Out_Bounce_3);
 ```
-easedCompletion = completion.ValueWithEasingType(EPPZEasing.EasingType.Ease_In_Out_Bounce_3);
+
+Or you can use easing instances directly.
+```C#
+float easedCompletion = currentEasing.ValueForInput(completion);
+```
+
+Easing objects gets allocated once, then pooled at runtime. You can access them using static accessor.
+```
+EPPZEasing currentEasing = EPPZEasing.EasingForType(EasingType.Ease_In_Out_Circular);
 ```
 
 
 #### Documentation
 
-The code is mostly self documented, you can see actual algorithms with some explanations within the class bodies.
+The code is mostly self documented, you can see actual easing algorithms with some explanations within the class bodies.
 
 ```C#
-public class EPPZEasing_Ease_Out : EPPZEasing
+public class EPPZEasing_Ease_Out_2 : EPPZEasing
 {
 	public override EasingType type { get { return EasingType.Ease_Out; } }
-	public override string name { get { return "Ease_out"; } }
-	public override string description { get { return "Inverse quadratic"; } }
-	public override string algorithm { get { return "y = 1 - (1-x)^2"; } }
+	public override string name { get { return "Ease_Out_2"; } }
+	public override string description { get { return "Inverse cubic"; } }
+	public override string algorithm { get { return "y = 1 - (1-x)^3"; } } // http://fooplot.com/plot/k8yltyv60y
 	public override float ValueForInput(float input)
 	{
-		return 1.0f - Mathf.Pow(1.0f - input, 2.0f);
+		return 1.0f - Mathf.Pow(1.0f - input, 3.0f);
 	}
 }
 ```
+
+
+#### Algorithms
+
+For easy reference, find the equations implemented so far below.
+
+```
+// Linear
+y = x
+
+// Ease_In
+y = x^2
+
+// Ease_In_2
+y = x^3
+
+// Ease_In_3
+y = x^8
+
+// Ease_Out
+y = 1 - (1-x)^2
+
+// Ease_Out_2
+y = 1 - (1-x)^3
+
+// Ease_Out_3
+y = 1 - (1-x)^8
+
+// Ease_In_Out
+y = (x < 0.5) ? (2x)^2 / 2 : 0.5 + (1 - (2(1-x))^2) / 2
+
+// Ease_In_Out_2
+y = (x < 0.5) ? (2x)^3 / 2 : 0.5 + (1 - (2(1-x))^3) / 2
+
+// Ease_In_Out_3
+y = (x < 0.5) ? (2x)^8 / 2 : 0.5 + (1 - (2(1-x))^8) / 2
+
+// Ease_In_Circular
+y = 1 - sqrt(1 - x^2)
+
+// Ease_Out_Circular
+y = sqrt(1 - (1 - x)^2)
+
+// Ease_In_Out_Circular
+y = (x < 0.5) ? (1 - sqrt(1 - (2x)^2)) / 2 : 0.5 + sqrt(1 - ((2(1-x))^2)) / 2
+```
+
+You can see them in action in any plot service like http://fooplot.com/
+
 
 #### License
 
