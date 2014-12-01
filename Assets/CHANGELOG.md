@@ -1,6 +1,10 @@
 EPPZEasing
 ----------
 
+* 0.0.41
+
+	+ Some simplification in algorithm implementation
+
 * 0.0.4
 
 	+ `EPPZEasing_Ease_In_Bounce`

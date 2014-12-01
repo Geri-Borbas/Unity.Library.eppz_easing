@@ -276,7 +276,8 @@ public class EPPZEasing_Ease_In_Bounce : EPPZEasing
 	public override string algorithm { get { return "y = 2x^3 - x^2"; } } // http://fooplot.com/plot/g7rbnte7c3
 	public override float ValueForInput(float input)
 	{
-		return 2 * Mathf.Pow(input, 3) - Mathf.Pow(input, 2);
+		// return 2 * Mathf.Pow(input, 3) - Mathf.Pow(input, 2);
+		return Mathf.Pow(input, 2) * (2 * input - 1); // Using wolfram simplifier
 	}
 }
 
@@ -289,7 +290,8 @@ public class EPPZEasing_Ease_In_Bounce_2 : EPPZEasing
 	public override string algorithm { get { return "y = 3x^3 - 2x^2"; } } // http://fooplot.com/plot/erk1hwxca9
 	public override float ValueForInput(float input)
 	{
-		return 3 * Mathf.Pow(input, 3) - 2 * Mathf.Pow(input, 2);
+		// return 3 * Mathf.Pow(input, 3) - 2 * Mathf.Pow(input, 2);
+		return Mathf.Pow(input, 2) * (3 * input - 2); // Using wolfram simplifier
 	}
 }
 
@@ -302,7 +304,8 @@ public class EPPZEasing_Ease_In_Bounce_3 : EPPZEasing
 	public override string algorithm { get { return "y = 4x^3 - 3x^2"; } } // http://fooplot.com/plot/qka4qrhoh2
 	public override float ValueForInput(float input)
 	{
-		return 4 * Mathf.Pow(input, 3) - 3 * Mathf.Pow(input, 2);
+		// return 4 * Mathf.Pow(input, 3) - 3 * Mathf.Pow(input, 2);
+		return Mathf.Pow(input, 2) * (4 * input - 3); // Using wolfram simplifier
 	}
 }
 
@@ -354,8 +357,8 @@ public class EPPZEasing_Ease_In_Out_Bounce : EPPZEasing
 	public override float ValueForInput(float input)
 	{
 		return (input < 0.5f) 
-			? (2 * Mathf.Pow(input * 2.0f, 3) - Mathf.Pow(input * 2.0f, 2)) * 0.5f
-			: 1 - ((2 * Mathf.Pow((1 - input) * 2.0f, 3) - Mathf.Pow((1 - input) * 2.0f, 2)) * 0.5f);
+			? (2 * Mathf.Pow(input * 2, 3) - Mathf.Pow(input * 2, 2)) * 0.5f
+			: 1 - ((2 * Mathf.Pow((1 - input) * 2, 3) - Mathf.Pow((1 - input) * 2, 2)) * 0.5f);
 	}
 }
 
@@ -369,8 +372,13 @@ public class EPPZEasing_Ease_In_Out_Bounce_2 : EPPZEasing
 	public override float ValueForInput(float input)
 	{
 		return (input < 0.5f) 
-			? (3 * Mathf.Pow(input * 2.0f, 3) - 2 * Mathf.Pow(input * 2.0f, 2)) * 0.5f
-			: 1 - ((3 * Mathf.Pow((1 - input) * 2.0f, 3) - 2 * Mathf.Pow((1 - input) * 2.0f, 2)) * 0.5f);
+
+			// ? (3 * Mathf.Pow(input * 2, 3) - 2 * Mathf.Pow(input * 2, 2)) * 0.5f
+			// : 1 - ((3 * Mathf.Pow((1 - input) * 2, 3) - 2 * Mathf.Pow((1 - input) * 2, 2)) * 0.5f);
+
+			? 12 * Mathf.Pow(input, 3) - 4 * Mathf.Pow(input, 2) // Using wolfram simplifier
+			: 12 * Mathf.Pow(input, 3) - 32 * Mathf.Pow(input, 2) + 28 * input - 7; // Using wolfram simplifier
+
 	}
 }
 
@@ -384,8 +392,8 @@ public class EPPZEasing_Ease_In_Out_Bounce_3 : EPPZEasing
 	public override float ValueForInput(float input)
 	{
 		return (input < 0.5f) 
-			? (4 * Mathf.Pow(input * 2.0f, 3) - 3 * Mathf.Pow(input * 2.0f, 2)) * 0.5f
-			: 1 - ((4 * Mathf.Pow((1 - input) * 2.0f, 3) - 3 * Mathf.Pow((1 - input) * 2.0f, 2)) * 0.5f);
+			? (4 * Mathf.Pow(input * 2, 3) - 3 * Mathf.Pow(input * 2, 2)) * 0.5f
+			: 1 - ((4 * Mathf.Pow((1 - input) * 2, 3) - 3 * Mathf.Pow((1 - input) * 2, 2)) * 0.5f);
 	}
 }
 

@@ -132,7 +132,6 @@ y = 1 - (3(1 - x)^3 - 2(1 - x)^2)
 
 // Ease_Out_Bounce_3
 y = 1 - (4(1 - x)^3 - 3(1 - x)^2)
-```
 
 // Ease_In_Out_Bounce
 y = (x < 0.5) ? (2(2x)^3 - (2x)^2) * 0.5 : 1 - (2(2(1 - x))^3 - (2(1 - x))^2) * 0.5
@@ -142,13 +141,14 @@ y = (x < 0.5) ? (3(2x)^3 - 2(2x)^2) * 0.5 : 1 - (3(2(1 - x))^3 - 2(2(1 - x))^2) 
 
 // Ease_In_Out_Bounce_3
 y = (x < 0.5) ? (4(2x)^3 - 3(2x)^2) * 0.5 : 1 - (4(2(1 - x))^3 - 3(2(1 - x))^2) * 0.5
+```
 
 You can see them in action in any plot service like http://fooplot.com/
 
 
 #### Next
 
-Gonna flatten out equations more, also planning to render a set of samples to be able to get interpolated values for performance considerations. As another option to cahce, render samples into a texture for shaders. Also give full control over the values of these presets, option to blend different easings.
+Gonna flatten out equations more, also planning to render a set of samples to be able to get interpolated values for performance considerations. As another option to cahce, render samples into a texture suitable for shader inputs. Also give full control over the values of these presets, option to blend different easings.
 
 
 #### License
