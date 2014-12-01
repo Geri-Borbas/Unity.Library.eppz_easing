@@ -116,7 +116,7 @@ public class EPPZEasing_Ease_Out_2 : EPPZEasing
 {
 	public override EasingType type { get { return EasingType.Ease_Out; } }
 	public override string name { get { return "Ease_out_2"; } }
-	public override string description { get { return "Inverse cubic"; } }
+	public override string description { get { return "inverse cubic"; } }
 	public override string algorithm { get { return "y = 1 - (1-x)^3"; } }
 	public override float ValueForInput(float input)
 	{
@@ -129,7 +129,7 @@ public class EPPZEasing_Ease_Out_3 : EPPZEasing
 {
 	public override EasingType type { get { return EasingType.Ease_Out; } }
 	public override string name { get { return "Ease_out_3"; } }
-	public override string description { get { return "Inverse octic"; } }
+	public override string description { get { return "inverse octic"; } }
 	public override string algorithm { get { return "y = 1 - (1-x)^8"; } }
 	public override float ValueForInput(float input)
 	{

@@ -5,8 +5,8 @@ The very essence of easing algorithms. The easing algorithms here are intended f
 
 As of above, you can use these algorithms for various reasons, manipulating image contrast, blend any forces nicely weighted, adjusting sound effects depending on distance, or as people do most of the time, you can ease animation keyframes as well of course. 
 
-Simplicity
-----------
+
+#### Simplicity
 
 The code for EPPZEasing.Linear goes like:
 ```C#
@@ -31,4 +31,35 @@ currentTime /= duration;
 return valueChange * currentTime * currentTime * currentTime + startValue;
 ```
 
-So once you have a linear completion (or any kind of) percentage somewhere in your code, you can just ease it as you like, then go along with the rest of its application.
+So once you have a linear completion (or any kind of) percentage somewhere in your code, you can just ease it as you like (see Usage below), then go along with the rest of the application.
+
+
+#### Usage
+
+Can be applied to any `float` using extension methods.
+```
+easedCompletion = completion.ValueWithEasingType(EPPZEasing.EasingType.Ease_In_Out_Bounce_3);
+```
+
+
+#### Documentation
+
+The code is mostly self documented, you can see actual algorithms with some explanations within the class bodies.
+
+```C#
+public class EPPZEasing_Ease_Out : EPPZEasing
+{
+	public override EasingType type { get { return EasingType.Ease_Out; } }
+	public override string name { get { return "Ease_out"; } }
+	public override string description { get { return "Inverse quadratic"; } }
+	public override string algorithm { get { return "y = 1 - (1-x)^2"; } }
+	public override float ValueForInput(float input)
+	{
+		return 1.0f - Mathf.Pow(1.0f - input, 2.0f);
+	}
+}
+```
+
+#### License
+
+> Licensed under the [Open Source MIT license](http://en.wikipedia.org/wiki/MIT_License).
