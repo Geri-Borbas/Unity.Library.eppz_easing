@@ -1,6 +1,20 @@
 EPPZEasing
 ----------
 
+* 0.0.4
+
+	+ `EPPZEasing_Ease_In_Bounce`
+	+ `EPPZEasing_Ease_In_Bounce_2`
+	+ `EPPZEasing_Ease_In_Bounce_3`
+
+	+ `EPPZEasing_Ease_Out_Bounce`
+	+ `EPPZEasing_Ease_Out_Bounce_2`
+	+ `EPPZEasing_Ease_Out_Bounce_3`
+		
+	+ `EPPZEasing_Ease_In_Out_Bounce`
+	+ `EPPZEasing_Ease_In_Out_Bounce_2`
+	+ `EPPZEasing_Ease_In_Out_Bounce_3`
+
 * 0.0.3
 
 	+ `EPPZEasing_Ease_In_Circular`
