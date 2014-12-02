@@ -26,6 +26,8 @@ Easing objects gets allocated once, then pooled at runtime. You can access them 
 EPPZEasing currentEasing = EPPZEasing.EasingForType(EasingType.Ease_In_Out_Circular);
 ```
 
+Need only a single file called [`**EPPZEasing.cs**`](https://github.com/eppz/eppz.easing/blob/master/Assets/EPPZEasing.cs).
+
 #### Simplicity
 
 The code for EPPZEasing.Linear goes like:
