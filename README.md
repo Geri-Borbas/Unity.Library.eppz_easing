@@ -9,7 +9,7 @@ As of above, you can use these algorithms for various reasons, manipulating imag
 
 #### Usage
 
-Once you have a linear completion, or any kind of percentage somewhere in your code, you can just ease it as you like, then go along with the rest of the application.
+Once you have a normalized completion (a value between 0 and 1), or any kind of percentage somewhere in your code, you can just ease it as you like, then go along with the rest of the application.
 
 Can be applied to any `float` using extension methods.
 ```C#
@@ -53,7 +53,7 @@ return valueChange * currentTime * currentTime * currentTime + startValue;
 
 #### Documentation
 
-The code is mostly self documented, you can see actual easing algorithms with some explanations within the class bodies.
+The code is mostly self documented, you can see actual easing algorithms with some explanations within the class bodies (implemented for testbed scene in the first place).
 
 ```C#
 public class EPPZEasing_Ease_Out_Bounce_3 : EPPZEasing
