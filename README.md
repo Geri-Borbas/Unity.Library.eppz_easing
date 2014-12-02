@@ -157,7 +157,7 @@ y = (x<0.5) ? (4(2x)^3-3(2x)^2)*0.5 : 1-(4(2(1-x))^3-3(2(1-x))^2)*0.5
 y = (x<0.5) ? 16x^3-6x^2 : 16x^3-42x^2+36x-9
 ```
 
-You can see them in action in any plot service like http://fooplot.com/, or simply copy eqution to Google search bar.
+You can see them in action in any plot service like http://fooplot.com/, or simply copy equation to Google search bar.
 
 
 #### Next
