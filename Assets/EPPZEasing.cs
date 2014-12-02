@@ -87,7 +87,8 @@ public class EPPZEasing
 	public virtual string name { get { return null; } }
 	public virtual string description { get { return null; } }
 	public virtual string algorithm { get { return null; } }
-	public virtual float ValueForInput(float input) { return input; }
+	public virtual string simplifiedAlgorithm { get { return algorithm; } }
+	public virtual float ValueForInput(float x) { return x; }
 }
 
 
@@ -97,9 +98,9 @@ public class EPPZEasing_Linear : EPPZEasing
 	public override string name { get { return "Linear"; } }
 	public override string description { get { return "No easing"; } }
 	public override string algorithm { get { return "y = x"; } } // http://fooplot.com/plot/dnmxpux77q
-	public override float ValueForInput(float input)
+	public override float ValueForInput(float x)
 	{
-		return input;
+		return x;
 	}
 }
 
@@ -109,10 +110,10 @@ public class EPPZEasing_Ease_In : EPPZEasing
 	public override EasingType type { get { return EasingType.Ease_In; } }
 	public override string name { get { return "Ease_In"; } }
 	public override string description { get { return "Quadratic"; } }
-	public override string algorithm { get { return "y = x^2"; } } // http://fooplot.com/plot/s30h4e1q70
-	public override float ValueForInput(float input)
+	public override string algorithm { get { return "y = x^2"; } }
+	public override float ValueForInput(float x)
 	{
-		return Mathf.Pow(input, 2);
+		return Mathf.Pow(x, 2);
 	}
 }
 
@@ -122,10 +123,10 @@ public class EPPZEasing_Ease_In_2 : EPPZEasing
 	public override EasingType type { get { return EasingType.Ease_In_2; } }
 	public override string name { get { return "Ease_In_2"; } }
 	public override string description { get { return "Cubic"; } }
-	public override string algorithm { get { return "y = x^3"; } } // http://fooplot.com/plot/98zyzpz4sk
-	public override float ValueForInput(float input)
+	public override string algorithm { get { return "y = x^3"; } }
+	public override float ValueForInput(float x)
 	{
-		return Mathf.Pow(input, 3);
+		return Mathf.Pow(x, 3);
 	}
 }
 
@@ -135,10 +136,10 @@ public class EPPZEasing_Ease_In_3 : EPPZEasing
 	public override EasingType type { get { return EasingType.Ease_In_3; } }
 	public override string name { get { return "Ease_In_3"; } }
 	public override string description { get { return "Octic"; } }
-	public override string algorithm { get { return "y = x^8"; } } // http://fooplot.com/plot/g3zxw2926b
-	public override float ValueForInput(float input)
+	public override string algorithm { get { return "y = x^8"; } }
+	public override float ValueForInput(float x)
 	{
-		return Mathf.Pow(input, 8);
+		return Mathf.Pow(x, 8);
 	}
 }
 
@@ -148,10 +149,10 @@ public class EPPZEasing_Ease_Out : EPPZEasing
 	public override EasingType type { get { return EasingType.Ease_Out; } }
 	public override string name { get { return "Ease_Out"; } }
 	public override string description { get { return "Inverse quadratic"; } }
-	public override string algorithm { get { return "y = 1 - (1-x)^2"; } } // http://fooplot.com/plot/1nk2180aab
-	public override float ValueForInput(float input)
+	public override string algorithm { get { return "y = 1-(1-x)^2"; } }
+	public override float ValueForInput(float x)
 	{
-		return 1 - Mathf.Pow(1 - input, 2);
+		return 1 - Mathf.Pow(1 - x, 2);
 	}
 }
 
@@ -161,10 +162,10 @@ public class EPPZEasing_Ease_Out_2 : EPPZEasing
 	public override EasingType type { get { return EasingType.Ease_Out_2; } }
 	public override string name { get { return "Ease_Out_2"; } }
 	public override string description { get { return "Inverse cubic"; } }
-	public override string algorithm { get { return "y = 1 - (1-x)^3"; } } // http://fooplot.com/plot/k8yltyv60y
-	public override float ValueForInput(float input)
+	public override string algorithm { get { return "y = 1-(1-x)^3"; } }
+	public override float ValueForInput(float x)
 	{
-		return 1 - Mathf.Pow(1 - input, 3);
+		return 2 * x - Mathf.Pow(x, 2);
 	}
 }
 
@@ -174,10 +175,10 @@ public class EPPZEasing_Ease_Out_3 : EPPZEasing
 	public override EasingType type { get { return EasingType.Ease_Out_3; } }
 	public override string name { get { return "Ease_Out_3"; } }
 	public override string description { get { return "Inverse octic"; } }
-	public override string algorithm { get { return "y = 1 - (1-x)^8"; } } // http://fooplot.com/plot/8xw4m0d7az
-	public override float ValueForInput(float input)
+	public override string algorithm { get { return "y = 1-(1-x)^8"; } }
+	public override float ValueForInput(float x)
 	{
-		return 1 - Mathf.Pow(1 - input, 8);
+		return 1 - Mathf.Pow(1 - x, 8);
 	}
 }
 
@@ -186,13 +187,14 @@ public class EPPZEasing_Ease_In_Out : EPPZEasing
 {
 	public override EasingType type { get { return EasingType.Ease_In_Out; } }
 	public override string name { get { return "Ease_In_Out"; } }
-	public override string description { get { return "Shrink, offset In / Out"; } }
-	public override string algorithm { get { return "y = (x < 0.5) ? (2x)^2 / 2 : 0.5 + (1 - (2(1-x))^2) / 2"; } } // http://fooplot.com/plot/n34po7bfzf
-	public override float ValueForInput(float input)
+	public override string description { get { return "Shrink, offset, simplify In / Out"; } }
+	public override string algorithm { get { return "y = (x<0.5) ? (2x)^2/2 : 0.5+(1-(2(1-x))^2)/2"; } }
+	public override string simplifiedAlgorithm { get { return "y = (x<0.5) ? 2x^2 : -2x^2+4x-1"; } }
+	public override float ValueForInput(float x)
 	{
-		return (input < 0.5f)
-			? Mathf.Pow(input * 2, 2) / 2
-			: 0.5f + (1 - Mathf.Pow((1 - input) * 2, 2)) / 2;
+		return (x < 0.5f)
+			? 2 * Mathf.Pow(x, 2)
+			: -2 * Mathf.Pow(x, 2) + 4 * x - 1;
 	}
 }
 
@@ -201,13 +203,14 @@ public class EPPZEasing_Ease_In_Out_2 : EPPZEasing
 {
 	public override EasingType type { get { return EasingType.Ease_In_Out_2; } }
 	public override string name { get { return "Ease_In_Out_2"; } }
-	public override string description { get { return "Shrink, offset In / Out"; } }
-	public override string algorithm { get { return "y = (x < 0.5) ? (2x)^3 / 2 : 0.5 + (1 - (2(1-x))^3) / 2"; } } // http://fooplot.com/plot/thnn6y22rk
-	public override float ValueForInput(float input)
+	public override string description { get { return "Shrink, offset, simplify In / Out"; } }
+	public override string algorithm { get { return "y = (x<0.5) ? (2x)^3/2 : 0.5+(1-(2(1-x))^3)/2"; } }
+	public override string simplifiedAlgorithm { get { return "y = (x<0.5) ? 4x^3 : 4x^3-12x^2+12x-3"; } }
+	public override float ValueForInput(float x)
 	{
-		return (input < 0.5f)
-			? Mathf.Pow(input * 2, 3) / 2
-			: 0.5f + (1 - Mathf.Pow((1 - input) * 2, 3)) / 2;
+		return (x < 0.5f)
+			? 4 * Mathf.Pow(x, 3)
+			: 4 * Mathf.Pow(x, 3) - 12 * Mathf.Pow(x, 2) + 12 * x - 3;
 	}
 }
 
@@ -216,13 +219,14 @@ public class EPPZEasing_Ease_In_Out_3 : EPPZEasing
 {
 	public override EasingType type { get { return EasingType.Ease_In_Out_3; } }
 	public override string name { get { return "Ease_In_Out_3"; } }
-	public override string description { get { return "Shrink, offset In / Out"; } }
-	public override string algorithm { get { return "y = (x < 0.5) ? (2x)^8 / 2 : 0.5 + (1 - (2(1-x))^8) / 2"; } } // http://fooplot.com/plot/1xu05v8kg4
-	public override float ValueForInput(float input)
+	public override string description { get { return "Shrink, offset, simplify In / Out"; } }
+	public override string algorithm { get { return "y = (x<0.5) ? (2x)^8/2 : 0.5+(1-(2(1-x))^8)/2"; } }
+	public override string simplifiedAlgorithm { get { return "y = (x<0.5) ? 128x^8 : 0.5+(1-(2(1-x))^8)/2"; } }
+	public override float ValueForInput(float x)
 	{
-		return (input < 0.5f)
-			? Mathf.Pow(input * 2, 8) / 2
-			: 0.5f + (1 - Mathf.Pow((1 - input) * 2, 8)) / 2;
+		return (x < 0.5f)
+			? 128 * Mathf.Pow(x, 8)
+			: 0.5f + (1 - Mathf.Pow((1 - x) * 2, 8)) / 2;
 	}
 }
 
@@ -232,10 +236,10 @@ public class EPPZEasing_Ease_In_Circular : EPPZEasing
 	public override EasingType type { get { return EasingType.Ease_In_Circular; } }
 	public override string name { get { return "Ease_In_Circular"; } }
 	public override string description { get { return "Inverse square root, inverse power"; } }
-	public override string algorithm { get { return "y = 1 - sqrt(1 - x^2)"; } } // http://fooplot.com/plot/b0gv94068p
-	public override float ValueForInput(float input)
+	public override string algorithm { get { return "y = 1-sqrt(1-x^2)"; } }
+	public override float ValueForInput(float x)
 	{
-		return 1 - Mathf.Sqrt(1 - Mathf.Pow(input, 2));
+		return 1 - Mathf.Sqrt(1 - Mathf.Pow(x, 2));
 	}
 }
 
@@ -245,10 +249,11 @@ public class EPPZEasing_Ease_Out_Circular : EPPZEasing
 	public override EasingType type { get { return EasingType.Ease_Out_Circular; } }
 	public override string name { get { return "Ease_Out_Circular"; } }
 	public override string description { get { return "Square root, power, inverse"; } }
-	public override string algorithm { get { return "y = sqrt(1 - (1 - x)^2)"; } } // http://fooplot.com/plot/3dcodq0v9f
-	public override float ValueForInput(float input)
+	public override string algorithm { get { return "y = sqrt(1-(1-x)^2)"; } }
+	public override string simplifiedAlgorithm { get { return "y = sqrt(-(x-2)x)"; } }
+	public override float ValueForInput(float x)
 	{
-		return Mathf.Sqrt(1 - Mathf.Pow(1 - input, 2));
+		return Mathf.Sqrt(-(x - 2) * x);
 	}
 }
 
@@ -257,13 +262,14 @@ public class EPPZEasing_Ease_In_Out_Circular : EPPZEasing
 {
 	public override EasingType type { get { return EasingType.Ease_In_Out_Circular; } }
 	public override string name { get { return "Ease_In_Out_Circular"; } }
-	public override string description { get { return "Shrink, offset In / Out"; } }
-	public override string algorithm { get { return "y = (x < 0.5) ? (1 - sqrt(1 - (2x)^2)) / 2 : 0.5 + sqrt(1 - ((2(1-x))^2)) / 2"; } } // http://fooplot.com/plot/e50chnjiq0
-	public override float ValueForInput(float input)
+	public override string description { get { return "Shrink, offset, simplify In / Out"; } }
+	public override string algorithm { get { return "y = (x<0.5) ? (1-sqrt(1-(2x)^2))/2 : 0.5+sqrt(1-((2(1-x))^2))/2"; } }
+	public override string simplifiedAlgorithm { get { return "y = (x<0.5) ? 0.5(1-sqrt(1-4x^2)) : 0.5(sqrt(-4(x-2)x-3)+1)"; } }
+	public override float ValueForInput(float x)
 	{
-		return (input < 0.5f) 
-			? (1 - Mathf.Sqrt(1 - Mathf.Pow(input * 2, 2))) / 2
-			: 0.5f + Mathf.Sqrt(1 - Mathf.Pow((1 - input) * 2, 2)) / 2;
+		return (x < 0.5f) 
+			? 0.5f * (1 - Mathf.Sqrt(1 - 4 * Mathf.Pow(x, 2)))
+			: 0.5f * (Mathf.Sqrt(-4 * (x - 2) * x - 3) + 1);
 	}
 }
 
@@ -273,11 +279,11 @@ public class EPPZEasing_Ease_In_Bounce : EPPZEasing
 	public override EasingType type { get { return EasingType.Ease_In_Bounce; } }
 	public override string name { get { return "Ease_In_Bounce"; } }
 	public override string description { get { return "Offset power composition"; } }
-	public override string algorithm { get { return "y = 2x^3 - x^2"; } } // http://fooplot.com/plot/g7rbnte7c3
-	public override float ValueForInput(float input)
+	public override string algorithm { get { return "y = 2x^3-x^2"; } }
+	public override string simplifiedAlgorithm { get { return "y = x^2(2x-1)"; } }
+	public override float ValueForInput(float x)
 	{
-		// return 2 * Mathf.Pow(input, 3) - Mathf.Pow(input, 2);
-		return Mathf.Pow(input, 2) * (2 * input - 1); // Using wolfram simplifier
+		return Mathf.Pow(x, 2) * (2 * x - 1);
 	}
 }
 
@@ -287,11 +293,11 @@ public class EPPZEasing_Ease_In_Bounce_2 : EPPZEasing
 	public override EasingType type { get { return EasingType.Ease_In_Bounce_2; } }
 	public override string name { get { return "Ease_In_Bounce_2"; } }
 	public override string description { get { return "Offset power composition"; } }
-	public override string algorithm { get { return "y = 3x^3 - 2x^2"; } } // http://fooplot.com/plot/erk1hwxca9
-	public override float ValueForInput(float input)
+	public override string algorithm { get { return "y = 3x^3-2x^2"; } }
+	public override string simplifiedAlgorithm { get { return "y = x^2(3x-2)"; } }
+	public override float ValueForInput(float x)
 	{
-		// return 3 * Mathf.Pow(input, 3) - 2 * Mathf.Pow(input, 2);
-		return Mathf.Pow(input, 2) * (3 * input - 2); // Using wolfram simplifier
+		return Mathf.Pow(x, 2) * (3 * x - 2);
 	}
 }
 
@@ -301,11 +307,11 @@ public class EPPZEasing_Ease_In_Bounce_3 : EPPZEasing
 	public override EasingType type { get { return EasingType.Ease_In_Bounce_3; } }
 	public override string name { get { return "Ease_In_Bounce_3"; } }
 	public override string description { get { return "Offset power composition"; } }
-	public override string algorithm { get { return "y = 4x^3 - 3x^2"; } } // http://fooplot.com/plot/qka4qrhoh2
-	public override float ValueForInput(float input)
+	public override string algorithm { get { return "y = 4x^3-3x^2"; } }
+	public override string simplifiedAlgorithm { get { return "y = x^2(4x-3)"; } }
+	public override float ValueForInput(float x)
 	{
-		// return 4 * Mathf.Pow(input, 3) - 3 * Mathf.Pow(input, 2);
-		return Mathf.Pow(input, 2) * (4 * input - 3); // Using wolfram simplifier
+		return Mathf.Pow(x, 2) * (4 * x - 3);
 	}
 }
 
@@ -315,10 +321,11 @@ public class EPPZEasing_Ease_Out_Bounce : EPPZEasing
 	public override EasingType type { get { return EasingType.Ease_Out_Bounce; } }
 	public override string name { get { return "Ease_Out_Bounce"; } }
 	public override string description { get { return "Inverse offset power composition"; } }
-	public override string algorithm { get { return "y = 1 - (2(1 - x)^3 - (1 - x)^2)"; } } // http://fooplot.com/plot/6or0al3amk
-	public override float ValueForInput(float input)
+	public override string algorithm { get { return "y = 1-(2(1-x)^3-(1-x)^2)"; } }
+	public override string simplifiedAlgorithm { get { return "y = x(x(2x-5)+4)"; } }
+	public override float ValueForInput(float x)
 	{
-		return 1 - (2 * Mathf.Pow(1 - input, 3) - Mathf.Pow(1 - input, 2));
+		return x * ( x * (2 * x - 5 ) + 4);
 	}
 }
 
@@ -327,10 +334,11 @@ public class EPPZEasing_Ease_Out_Bounce_2 : EPPZEasing
 	public override EasingType type { get { return EasingType.Ease_Out_Bounce_2; } }
 	public override string name { get { return "Ease_Out_Bounce_2"; } }
 	public override string description { get { return "Inverse offfset power composition"; } }
-	public override string algorithm { get { return "y = 1 - (3(1 - x)^3 - 2(1 - x)^2)"; } } // http://fooplot.com/plot/7vkjipbt24
-	public override float ValueForInput(float input)
+	public override string algorithm { get { return "y = 1-(3(1-x)^3-2(1-x)^2)"; } }
+	public override string simplifiedAlgorithm { get { return "y = x(x(3x-7)+5)"; } }
+	public override float ValueForInput(float x)
 	{
-		return 1 - (3 * Mathf.Pow(1 - input, 3) - 2 * Mathf.Pow(1 - input, 2));
+		return x * ( x * (3 * x - 7 ) + 5);
 	}
 }
 
@@ -340,10 +348,11 @@ public class EPPZEasing_Ease_Out_Bounce_3 : EPPZEasing
 	public override EasingType type { get { return EasingType.Ease_Out_Bounce_3; } }
 	public override string name { get { return "Ease_Out_Bounce_3"; } }
 	public override string description { get { return "Inverse offset power composition"; } }
-	public override string algorithm { get { return "y = 1 - (4(1 - x)^3 - 3(1 - x)^2)"; } } // http://fooplot.com/plot/orckylq02z
-	public override float ValueForInput(float input)
+	public override string algorithm { get { return "y = 1-(4(1-x)^3-3(1-x)^2)"; } }
+	public override string simplifiedAlgorithm { get { return "y = x(x(4x-9)+6)"; } }
+	public override float ValueForInput(float x)
 	{
-		return 1 - (4 * Mathf.Pow(1 - input, 3) - 3 * Mathf.Pow(1 - input, 2));
+		return x * ( x * (4 * x - 9 ) + 6);
 	}
 }
 
@@ -352,13 +361,14 @@ public class EPPZEasing_Ease_In_Out_Bounce : EPPZEasing
 {
 	public override EasingType type { get { return EasingType.Ease_In_Out_Bounce; } }
 	public override string name { get { return "Ease_In_Out_Bounce"; } }
-	public override string description { get { return "Shrink, offset In / Out"; } }
-	public override string algorithm { get { return "y = (x < 0.5) ? (2(2x)^3 - (2x)^2) * 0.5 : 1 - (2(2(1 - x))^3 - (2(1 - x))^2) * 0.5"; } } // http://fooplot.com/plot/16hbi5gjoi
-	public override float ValueForInput(float input)
+	public override string description { get { return "Shrink, offset, simplify In / Out"; } }
+	public override string algorithm { get { return "y = (x<0.5) ? (2(2x)^3-(2x)^2)*0.5 : 1-(2(2(1-x))^3-(2(1-x))^2)*0.5"; } }
+	public override string simplifiedAlgorithm { get { return "y = (x<0.5) ? 8x^3-2x^2 : 8x^3-22x^2+20x-5"; } }
+	public override float ValueForInput(float x)
 	{
-		return (input < 0.5f) 
-			? (2 * Mathf.Pow(input * 2, 3) - Mathf.Pow(input * 2, 2)) * 0.5f
-			: 1 - ((2 * Mathf.Pow((1 - input) * 2, 3) - Mathf.Pow((1 - input) * 2, 2)) * 0.5f);
+		return (x < 0.5f) 
+			? 8 * Mathf.Pow(x, 3) - 2 * Mathf.Pow(x, 2)
+			: 8 * Mathf.Pow(x, 3) - 22 * Mathf.Pow(x, 2) + 20 * x - 5;
 	}
 }
 
@@ -367,18 +377,14 @@ public class EPPZEasing_Ease_In_Out_Bounce_2 : EPPZEasing
 {
 	public override EasingType type { get { return EasingType.Ease_In_Out_Bounce_2; } }
 	public override string name { get { return "Ease_In_Out_Bounce_2"; } }
-	public override string description { get { return "Shrink, offset In / Out"; } }
-	public override string algorithm { get { return "y = (x < 0.5) ? (3(2x)^3 - 2(2x)^2) * 0.5 : 1 - (3(2(1 - x))^3 - 2(2(1 - x))^2) * 0.5"; } } // http://fooplot.com/plot/enxnagalbw
-	public override float ValueForInput(float input)
+	public override string description { get { return "Shrink, offset, simplify In / Out"; } }
+	public override string algorithm { get { return "y = (x<0.5) ? (3(2x)^3- (2x)^2)*0.5 : 1-(3(2(1-x))^3-2(2(1-x))^2)*0.5"; } }
+	public override string simplifiedAlgorithm { get { return "y = (x<0.5) ? 12x^3-4x^2 : 12x^3-32x^2+28x-7"; } }
+	public override float ValueForInput(float x)
 	{
-		return (input < 0.5f) 
-
-			// ? (3 * Mathf.Pow(input * 2, 3) - 2 * Mathf.Pow(input * 2, 2)) * 0.5f
-			// : 1 - ((3 * Mathf.Pow((1 - input) * 2, 3) - 2 * Mathf.Pow((1 - input) * 2, 2)) * 0.5f);
-
-			? 12 * Mathf.Pow(input, 3) - 4 * Mathf.Pow(input, 2) // Using wolfram simplifier
-			: 12 * Mathf.Pow(input, 3) - 32 * Mathf.Pow(input, 2) + 28 * input - 7; // Using wolfram simplifier
-
+		return (x < 0.5f) 
+			? 12 * Mathf.Pow(x, 3) - 4 * Mathf.Pow(x, 2)
+			: 12 * Mathf.Pow(x, 3) - 32 * Mathf.Pow(x, 2) + 28 * x - 7;
 	}
 }
 
@@ -388,12 +394,13 @@ public class EPPZEasing_Ease_In_Out_Bounce_3 : EPPZEasing
 	public override EasingType type { get { return EasingType.Ease_In_Out_Bounce_3; } }
 	public override string name { get { return "Ease_In_Out_Bounce_3"; } }
 	public override string description { get { return "Shrink, offset In / Out"; } }
-	public override string algorithm { get { return "y = (x < 0.5) ? (4(2x)^3 - 3(2x)^2) * 0.5 : 1 - (4(2(1 - x))^3 - 3(2(1 - x))^2) * 0.5"; } } // http://fooplot.com/plot/4dedyzq73g
-	public override float ValueForInput(float input)
+	public override string algorithm { get { return "y = ((x<0.5) ? (4(2x)^3-3(2x)^2)*0.5 : 1-(4(2(1-x))^3-3(2(1-x))^2)*0.5"; } }
+	public override string simplifiedAlgorithm { get { return "y = (x<0.5) ? 16x^3-6x^2 : 16x^3-42x^2+36x-9"; } }
+	public override float ValueForInput(float x)
 	{
-		return (input < 0.5f) 
-			? (4 * Mathf.Pow(input * 2, 3) - 3 * Mathf.Pow(input * 2, 2)) * 0.5f
-			: 1 - ((4 * Mathf.Pow((1 - input) * 2, 3) - 3 * Mathf.Pow((1 - input) * 2, 2)) * 0.5f);
+		return (x < 0.5f) 
+			? 16 * Mathf.Pow(x, 3) - 6 * Mathf.Pow(x, 2)
+			: 16 * Mathf.Pow(x, 3) - 42 * Mathf.Pow(x, 2) + 36 * x - 9;
 	}
 }
 

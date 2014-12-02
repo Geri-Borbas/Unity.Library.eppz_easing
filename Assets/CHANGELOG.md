@@ -1,6 +1,12 @@
 EPPZEasing
 ----------
 
+* 0.0.5
+
+	+ Simplified every algorithm
+	+ UI adjustments
+	+ Documentation tweaks
+
 * 0.0.41
 
 	+ Some simplification in algorithm implementation

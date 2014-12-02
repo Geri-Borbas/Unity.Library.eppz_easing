@@ -15,6 +15,7 @@ public class EPPZEasing_Samples_Renderer : MonoBehaviour
 	public TextMesh nameTextMesh;
 	public TextMesh descriptionTextMesh;
 	public TextMesh algorithmTextMesh;
+	public TextMesh simplifiedAlgorithmTextMesh;
 
 
 	public void Align()
@@ -33,6 +34,7 @@ public class EPPZEasing_Samples_Renderer : MonoBehaviour
 		nameTextMesh.text = samples.easing.name;
 		descriptionTextMesh.text = samples.easing.description;
 		algorithmTextMesh.text = samples.easing.algorithm;
+		simplifiedAlgorithmTextMesh.text = samples.easing.simplifiedAlgorithm;
 
 		// Align line renderer vertices.
 		float input = 0.0f;
