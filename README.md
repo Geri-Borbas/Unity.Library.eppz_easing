@@ -5,6 +5,26 @@ The very essence of easing algorithms. All the easing algorithms here are intend
 
 As of above, you can use these algorithms for various reasons, manipulating image, blend forces, adjust volume, or as people do most of the time, you can ease animation keyframes as well of course. 
 
+![eppz! easing algorithms](http://eppz.eu/blog/wp-content/uploads/Easing_algorithms_eppz.jpg)
+
+#### Usage
+
+Once you have a linear completion, or any kind of percentage somewhere in your code, you can just ease it as you like, then go along with the rest of the application.
+
+Can be applied to any `float` using extension methods.
+```C#
+float easedCompletion = completion.ValueWithEasingType(EasingType.Ease_In_Out_Bounce_3);
+```
+
+Or you can use easing instances directly.
+```C#
+float easedCompletion = currentEasing.ValueForInput(completion);
+```
+
+Easing objects gets allocated once, then pooled at runtime. You can access them using static accessor.
+```
+EPPZEasing currentEasing = EPPZEasing.EasingForType(EasingType.Ease_In_Out_Circular);
+```
 
 #### Simplicity
 
@@ -30,27 +50,6 @@ return Mathf.Pow(input, 3.0f);
 currentTime /= duration;
 return valueChange * currentTime * currentTime * currentTime + startValue;
 ```
-
-So once you have a linear completion (or any kind of) percentage somewhere in your code, you can just ease it as you like (see Usage below), then go along with the rest of the application.
-
-
-#### Usage
-
-Can be applied to any `float` using extension methods.
-```C#
-float easedCompletion = completion.ValueWithEasingType(EasingType.Ease_In_Out_Bounce_3);
-```
-
-Or you can use easing instances directly.
-```C#
-float easedCompletion = currentEasing.ValueForInput(completion);
-```
-
-Easing objects gets allocated once, then pooled at runtime. You can access them using static accessor.
-```
-EPPZEasing currentEasing = EPPZEasing.EasingForType(EasingType.Ease_In_Out_Circular);
-```
-
 
 #### Documentation
 
@@ -158,7 +157,7 @@ y = (x<0.5) ? (4(2x)^3-3(2x)^2)*0.5 : 1-(4(2(1-x))^3-3(2(1-x))^2)*0.5
 y = (x<0.5) ? 16x^3-6x^2 : 16x^3-42x^2+36x-9
 ```
 
-You can see them in action in any plot service like http://fooplot.com/
+You can see them in action in any plot service like http://fooplot.com/, or simply copy eqution to Google search bar.
 
 
 #### Next
