@@ -1,7 +1,9 @@
 EPPZEasing
 ----------
 
-Simplified / normalized easign algorithms. Functions here ** take a (mostly linear / normalized) input value, then spits out an eased output**, so are not coupled to time or animation directly.
+Simplified / normalized easign algorithms.
+
+Functions here **take a (mostly linear / normalized) input value, then spits out an eased output**, so are not coupled to time or animation directly.
 
 ![eppz! easing algorithms](http://eppz.eu/blog/wp-content/uploads/Easing_algorithms_eppz.jpg)
 
