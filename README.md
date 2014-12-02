@@ -1,7 +1,7 @@
 EPPZEasing
 ----------
 
-The very essence of easing algorithms. All the easing algorithms here are intended for any use, regardless of time or any given values to change. **It only takes a (mostly linear / normalized) input, then spits out an eased output.**
+The very essence of easing algorithms. Functions here ** take a (mostly linear / normalized) input, then spits out an eased output.**
 
 As of above, you can use these algorithms for various reasons, manipulating image, blend forces, adjust volume, or as people do most of the time, you can ease animation keyframes as well of course. 
 
