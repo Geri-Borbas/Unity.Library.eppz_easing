@@ -1,9 +1,7 @@
 EPPZEasing
 ----------
 
-The very essence of easing algorithms. Functions here ** take a (mostly linear / normalized) input, then spits out an eased output.**
-
-As of above, you can use these algorithms for various reasons, manipulating image, blend forces, adjust volume, or as people do most of the time, you can ease animation keyframes as well of course. 
+Simplified / normalized easign algorithms. Functions here ** take a (mostly linear / normalized) input value, then spits out an eased output**, so are not coupled to time or animation directly.
 
 ![eppz! easing algorithms](http://eppz.eu/blog/wp-content/uploads/Easing_algorithms_eppz.jpg)
 
@@ -40,16 +38,6 @@ return valueChange * currentTime / duration + startValue;
 
 While this is all fine above, it feels way too specific for me, as beside easing, it implements value changing over time, also forces you to normalize time in this manner. If you want to change 6 values at once, you have to ease each an every value.
 
-Or you can compare EPPZEasing.Ease_In_3...
-```C#
-return Mathf.Pow(input, 3.0f);
-```
-
-...with the usual cubic easing implementation:
-```C#
-currentTime /= duration;
-return valueChange * currentTime * currentTime * currentTime + startValue;
-```
 
 #### Documentation
 
