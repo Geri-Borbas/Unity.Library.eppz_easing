@@ -5,7 +5,7 @@ The very essence of easing algorithms. Functions here ** take a (mostly linear /
 
 As of above, you can use these algorithms for various reasons, manipulating image, blend forces, adjust volume, or as people do most of the time, you can ease animation keyframes as well of course. 
 
-![eppz! easing algorithms](http://eppz.eu/blog/wp-content/uploads/Easing_algorithms_eppz.jpg)
+ ![eppz! easing algorithms](http://eppz.eu/blog/wp-content/uploads/Easing_algorithms_eppz.jpg)
 
 #### Usage
 
